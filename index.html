@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Analizador Léxico en JavaScript</title>
+    <script src="prueba.js"></script>
+  </head>
+  <body>
+    <h1>Analizador Léxico en JavaScript / Jerinel Mendoza - 1-17-0996</h1>
+
+    <textarea id="code" rows="10" cols="50"></textarea>
+    <button onclick="analyze()">Analizar</button>
+
+    <h2>Tabla de Símbolos:</h2>
+    <table id="symbol-table">
+      <thead>
+        <tr>
+          <th>TIPO</th>
+          <th>---------------------------------- VALOR</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script>
+      function analyze() {
+        var codigo = document.getElementById("code").value;
+        var tokens = buscarCodigo(codigo);
+        var symbolTable = document.getElementById("symbol-table").getElementsByTagName("tbody")[0];
+        symbolTable.innerHTML = "";
+
+        tokens.forEach(function (token) {
+          var row = symbolTable.insertRow();
+          var typeCell = row.insertCell();
+          var valueCell = row.insertCell();
+          typeCell.textContent = token.type;
+          valueCell.textContent = '---------------------------------- '+token.value;
+        });
+      }
+    </script>
+  </body>
+</html>
